@@ -1,15 +1,24 @@
 {
   "name": "roosterteeth",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "version": "0.0.1",
+  "description": "A Node.js client for the Rooster Teeth API",
+  "main": "./lib/roosterteeth",
+  "author": {
+    "name": "Will Greene",
+    "email": "william.greene15@gmail.com"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wmgreene/roosterteeth.git"
+  },
   "dependencies": {
-    "request": "^2.88.0"
-  }
+    "request": "2.44.0"
+  },
+  "license": "MIT",
+  "keywords": [
+    "svod",
+    "roosterteeth",
+    "sdk"
+  ],
+  "readmeFilename": "README.md"
 }
