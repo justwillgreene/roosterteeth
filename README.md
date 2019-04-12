@@ -16,6 +16,28 @@ var roosterteeth = new RoosterTeeth({});
 * Add tests.
 * Supported Methods documentation.
 
+### Channels
+
+All
+* roosterteeth.channels.list;
+
+Single
+
+```js
+roosterteeth.channels.withID('rooster-teeth').self(function(argu){
+    const arg = arguments[1];
+    console.log(arg);
+});
+```
+* roosterteeth.channels.withID(id).details; - Returns Channel
+* roosterteeth.channels.withID(id).shows; - Returns Show
+* roosterteeth.channels.withID(id).movies; - Returns Movie
+* roosterteeth.channels.withID(id).product_collections; - Returns Product Collection
+* roosterteeth.channels.withID(id).featured_items; - Returns Featured Item
+* roosterteeth.channels.withID(id).episodes; - Returns Episode
+* roosterteeth.channels.withID(id).livestreams; - Returns Livestream
+
+
 ### Objects
 * channel
 * show
