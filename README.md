@@ -52,8 +52,10 @@ roosterteeth.settings.Authorization = 'Bearer #authorizationToken';
 ## Method Lists
 ### Auth - List
 #### Oauth
-* roosterteeth.oauth.token;
-* roosterteeth.oauth.revoke;
+| Method | Accept Query | Call | Description | Require Auth |
+| --- | --- | --- | --- | --- |
+| POST | N/A | roosterteeth.oauth.token | Allows a user to generate an auth token | N/A |
+| POST | N/A | roosterteeth.oauth.revoke | Allows a user to revoke an auth token | N/A |
 
 ### Business Service - List
 #### Me
