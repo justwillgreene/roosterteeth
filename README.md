@@ -39,6 +39,7 @@ roosterteeth.settings.Authorization = 'Bearer #authorizationToken';
 * [x] Enhance documentation with extra details.
 * [ ] Add tests.
 * [x] Supported Methods documentation.
+* [ ] Add descriptions to supported Methods list tables.
 * [ ] Add support for the following sources: 
     * [x] Auth
     * [x] Business Service
@@ -52,123 +53,160 @@ roosterteeth.settings.Authorization = 'Bearer #authorizationToken';
 ## Method Lists
 ### Auth - List
 #### Oauth
-| Method | Accept Query | Call | Description | Require Auth |
+| Method | Query/Body | Call | Description | Auth |
 | --- | --- | --- | --- | --- |
-| POST | N/A | roosterteeth.oauth.token | Allows a user to generate an auth token | N/A |
-| POST | N/A | roosterteeth.oauth.revoke | Allows a user to revoke an auth token | N/A |
+| POST | N/A | roosterteeth.oauth.token({details},callback) | Allows a user to generate an auth token | N/A |
+| POST | N/A | roosterteeth.oauth.revoke({details},callback) | Allows a user to revoke an auth token. | N/A |
 
 ### Business Service - List
 #### Me
-* roosterteeth.me.list;
+| Method | Query/Body | Call | Description | Auth |
+| --- | --- | --- | --- | --- |
+| GET | Query (opt.) | roosterteeth.me.list({details},callback) | Allows a user to access their own User object. | Req. |
 
 ### Community - List
 #### Achievements
-* roosterteeth.achievements.list;
-* roosterteeth.achievements.create;
-* roosterteeth.achievements.withID(#ID).self;
-* roosterteeth.achievements.withID(#ID).update;
-* roosterteeth.achievements.withID(#ID).destroy;
+| Method | Query/Body | Call | Description | Auth |
+| --- | --- | --- | --- | --- |
+| GET | Query (opt.) | roosterteeth.achievements.list({details},callback) | Allows an admin to list all possible achievements | Req. |
+| POST | Body (req.) | roosterteeth.achievements.create({details},callback) | Allows an admin to create achievements. | Req. |
+| GET | N/A | roosterteeth.achievements.withID(#ID).self(callback) | Allows an admin to see all fields of an achievement 'type.' | Req. |
+| PATCH | Body (req.) | roosterteeth.achievements.withID(#ID).update({details},callback) | Allows an admin to update any fields of an achievement 'type.' | Req. |
+| DELETE | N/A | roosterteeth.achievements.withID(#ID).destroy(callback) | Allow an admin to delete an achievement 'type.' | Req. |
+
 
 #### Admin Posts
-* roosterteeth.admin_posts.list;
+| Method | Query/Body | Call | Description | Auth |
+| --- | --- | --- | --- | --- |
+| GET | Query (opt.) | roosterteeth.admin_posts.list({details},callback) | Gets all flagged posts with pagination. | Req. |
 
 #### Communities
-* roosterteeth.communities.list;
-* roosterteeth.communities.autocomplete;
-* roosterteeth.communities.explore_feed;
-* roosterteeth.communities.withID(#ID).self;
-* roosterteeth.communities.withID(#ID).update;
-* roosterteeth.communities.withID(#ID).chat;
-* roosterteeth.communities.withID(#ID).action_logs;
-* roosterteeth.communities.withID(#ID).join;
-* roosterteeth.communities.withID(#ID).leave;
-* roosterteeth.communities.withID(#ID).status;
-* roosterteeth.communities.withID(#ID).ban;
-* roosterteeth.communities.withID(#ID).unban;
-* roosterteeth.communities.withID(#ID).members;
-* roosterteeth.communities.withID(#ID).moderators;
-* roosterteeth.communities.withID(#ID).autocomplete;
-* roosterteeth.communities.withID(#ID).posts;
-* roosterteeth.communities.withID(#ID).home_feed;
-* roosterteeth.communities.withID(#ID).follow;
-* roosterteeth.communities.withID(#ID).unfollow;
-* roosterteeth.communities.withID(#ID).social_media;
-* roosterteeth.communities.withID(#ID).update_social_media;
+| Method | Query/Body | Call | Description | Auth |
+| --- | --- | --- | --- | --- |
+| GET | Query (opt.) | roosterteeth.communities.list({details},callback) | Retrieve a list of the most recent communities. | N/A |
+| GET | Query (req.) | roosterteeth.communities.autocomplete({details},callback) | Autocomplete support for communities. | N/A |
+| GET | N/A | roosterteeth.communities.explore_feed(callback) |  | N/A |
+| GET | N/A | roosterteeth.communities.withID(#ID).self(callback) |  | N/A |
+| PATCH | Body (req.) | roosterteeth.communities.withID(#ID).update({details},callback) | Allows an admin or moderator to update the core attributes for a community. | Req. |
+| GET | N/A | roosterteeth.communities.withID(#ID).chat(callback) | Retrieve chat medatadata for community user |  |
+| GET | Query (opt.) | roosterteeth.communities.withID(#ID).action_logs({details},callback) | Retrieve action logs for a community | Req. |
+| POST | N/A | roosterteeth.communities.withID(#ID).join(callback) | The current user can join a public community. | Req. |
+| POST | N/A | roosterteeth.communities.withID(#ID).leave(callback) | The current user can leave the given community. | Req. |
+| GET | N/A | roosterteeth.communities.withID(#ID).status(callback) | Allows an admin or moderator to retrieve the status of a community. | Req. |
+| PATCH | Body (req.) | roosterteeth.communities.withID(#ID).ban({details},callback) | Allows an admin or moderator to ban a user from a community. | Req. |
+| PATCH | Body (req.) | roosterteeth.communities.withID(#ID).unban({details},callback) | Allows an admin or moderator to unban a user from a community. | Req. |
+| GET | Query (opt.) | roosterteeth.communities.withID(#ID).members({details},callback) | Retrieve a list of community members. |  |
+| GET | N/A | roosterteeth.communities.withID(#ID).moderators(callback) | Retrieve a list of community moderators. |  |
+| GET | Query (req.) | roosterteeth.communities.withID(#ID).autocomplete({details},callback) | Searches for users in a community that match a query string. |  |
+| POST | Body (req.) | roosterteeth.communities.withID(#ID).posts({details},callback) |  | Req. |
+| GET | N/A | roosterteeth.communities.withID(#ID).home_feed(callback) |  |  |
+| POST | N/A | roosterteeth.communities.withID(#ID).follow(callback) |  | Req. |
+| DELETE | N/A | roosterteeth.communities.withID(#ID).unfollow(callback) |  | Req. |
+| GET | N/A | roosterteeth.communities.withID(#ID).social_media(callback) |  | N/A |
+| PATCH | Body (req.) | roosterteeth.communities.withID(#ID).update_social_media(callback) |  | Req. |
+
 
 #### Invitations
-* roosterteeth.invitations.create;
-* roosterteeth.invitations.pending;
-* roosterteeth.invitations.withID(#ID).self;
-* roosterteeth.invitations.withID(#ID).accept;
-* roosterteeth.invitations.withID(#ID).seen;
+| Method | Query/Body | Call | Description | Auth |
+| --- | --- | --- | --- | --- |
+| POST | Body (req.) | roosterteeth.invitations.create({details},callback) |  | Req. |
+| GET | Query (opt.) | roosterteeth.invitations.pending({details},callback) |  | Req. |
+| GET | N/A | roosterteeth.invitations.withID(#ID).self(callback) |  | Req. |
+| POST | N/A | roosterteeth.invitations.withID(#ID).accept(callback) |  | Req. |
+| POST | N/A | roosterteeth.invitations.withID(#ID).seen(callback) |  | Req. |
 
 #### Memberships
-* roosterteeth.memberships.mine;
-* roosterteeth.memberships.withID(#ID).user;
+| Method | Query/Body | Call | Description | Auth |
+| --- | --- | --- | --- | --- |
+| GET | Query (opt.) | roosterteeth.memberships.mine({details},callback) | Retrieve list of communities the current user belongs to. | Req. |
+| GET | Query (opt.) | roosterteeth.memberships.withID(#ID).user({details},callback) | Retrieve list of communities a user belongs to. | N/A |
 
 #### Posts
-* roosterteeth.posts.withID(#ID).self;
-* roosterteeth.posts.withID(#ID).update;
-* roosterteeth.posts.withID(#ID).like;
-* roosterteeth.posts.withID(#ID).unlike;
+| Method | Query/Body | Call | Description | Auth |
+| --- | --- | --- | --- | --- |
+| GET | N/A | roosterteeth.posts.withID(#ID).self(callback) |  | N/A |
+| PATCH | Body (req.) | roosterteeth.posts.withID(#ID).update({details},callback) |  | Req. |
+| DELETE | N/A | roosterteeth.posts.withID(#ID).remove(callback) |  | Req. |
+| POST | N/A | roosterteeth.posts.withID(#ID).like(callback) |  | Req. |
+| DELETE | N/A | roosterteeth.posts.withID(#ID).unlike(callback) |  | Req. |
+
 #### Relationships
-* roosterteeth.relationships.withID(#ID).self;
-* roosterteeth.relationships.withID(#ID).create;
+| Method | Query/Body | Call | Description | Auth |
+| --- | --- | --- | --- | --- |
+| GET | Query (opt.) | roosterteeth.relationships.withID(#ID).self({details},callback) |  | Req. |
+| POST | Body (req.) | roosterteeth.relationships.withID(#ID).create({details},callback) |  | Req. |
+
 #### Users
-* roosterteeth.users.future_besties;
-* roosterteeth.users.search;
-* roosterteeth.users.withID(#ID).self;
-* roosterteeth.users.withID(#ID).mute;
-* roosterteeth.users.withID(#ID).following;
-* roosterteeth.users.withID(#ID).followers;
-* roosterteeth.users.withID(#ID).communities;
-* roosterteeth.users.withID(#ID).follow;
-* roosterteeth.users.withID(#ID).unfollow;
+| Method | Query/Body | Call | Description | Auth |
+| --- | --- | --- | --- | --- |
+| GET | Query (opt.) | roosterteeth.users.future_besties({details},callback) |  | Req. |
+| GET | Query (req.) | roosterteeth.users.search({details},callback) |  | N/A |
+| GET |  N/A| roosterteeth.users.withID(#ID).self(callback) |  | Req. |
+| POST | Body (req.) | roosterteeth.users.withID(#ID).mute({details},callback) |  | Req. |
+| GET | Query (opt.) | roosterteeth.users.withID(#ID).following({details},callback) |  | N/A |
+| GET | Query (opt.) | roosterteeth.users.withID(#ID).followers({details},callback) |  | N/A |
+| GET | N/A | roosterteeth.users.withID(#ID).communities(callback) |  | N/A |
+| POST | N/A | roosterteeth.users.withID(#ID).follow(callback) |  | Req. |
+| DELETE | N/A | roosterteeth.users.withID(#ID).unfollow(callback) |  | Req. |
 
 ### Lists - List
 #### Watchlist
-* roosterteeth.watchlist.list;
+| Method | Query/Body | Call | Description | Auth |
+| --- | --- | --- | --- | --- |
+| GET | Query (opt.) | roosterteeth.watchlist.list({details},callback) |  | Req. |
 
 ### SVOD - List
 #### Bonus Features
-* roosterteeth.bonus_features.list;
-* roosterteeth.bonus_features.withID(#ID).self;
-* roosterteeth.bonus_features.withID(#ID).videos;
-* roosterteeth.bonus_features.withID(#ID).next;
+| Method | Query/Body | Call | Description | Auth |
+| --- | --- | --- | --- | --- |
+| GET | Query (opt.) | roosterteeth.bonus_features.list({details},callback) |  | N/A |
+| GET | Query (opt.) | roosterteeth.bonus_features.withID(#ID).self({details},callback) |  | N/A |
+| GET | Query (opt.) | roosterteeth.bonus_features.withID(#ID).videos({details},callback) |  | N/A |
+| GET | Query (opt.) | roosterteeth.bonus_features.withID(#ID).next({details},callback) |  | N/A |
 
 #### Channels
-* roosterteeth.channels.list;
-* roosterteeth.channels.withID(#ID).self;
-* roosterteeth.channels.withID(#ID).shows;
-* roosterteeth.channels.withID(#ID).movies;
-* roosterteeth.channels.withID(#ID).product_collections;
-* roosterteeth.channels.withID(#ID).featured_items;
-* roosterteeth.channels.withID(#ID).episodes;
-* roosterteeth.channels.withID(#ID).livestreams;
+| Method | Query/Body | Call | Description | Auth |
+| --- | --- | --- | --- | --- |
+| GET | Query (opt.) | roosterteeth.channels.list({details},callback) |  |  |
+| GET | N/A | roosterteeth.channels.withID(#ID).self(callback) |  | N/A |
+| GET | Query (opt.) | roosterteeth.channels.withID(#ID).shows({details},callback) |  | N/A |
+| GET | Query (opt.) | roosterteeth.channels.withID(#ID).movies({details},callback) |  | N/A |
+| GET | Query (opt.) | roosterteeth.channels.withID(#ID).product_collections({details},callback) |  | N/A |
+| GET | Query (opt.) | roosterteeth.channels.withID(#ID).featured_items({details},callback) |  | N/A |
+| GET | Query (opt.) | roosterteeth.channels.withID(#ID).episodes({details},callback) |  | N/A |
+| GET | Query (opt.) | roosterteeth.channels.withID(#ID).livestreams({details},callback) |  | N/A |
 
 #### Episodes
-* roosterteeth.episodes.list;
-* roosterteeth.episodes.withID(#ID).self;
-* roosterteeth.episodes.withID(#ID).related;
-* roosterteeth.episodes.withID(#ID).next;
-* roosterteeth.episodes.withID(#ID).videos;
+| Method | Query/Body | Call | Description | Auth |
+| --- | --- | --- | --- | --- |
+| GET | Query (opt.) | roosterteeth.episodes.list({details},callback) |  | N/A |
+| GET | N/A | roosterteeth.episodes.withID(#ID).self(callback) |  | N/A |
+| GET | Query (opt.) | roosterteeth.episodes.withID(#ID).related({details},callback) |  | N/A |
+| GET | Query (opt.) | roosterteeth.episodes.withID(#ID).next({details},callback) |  | N/A |
+| GET | Query (opt.) | roosterteeth.episodes.withID(#ID).videos({details},callback) |  | N/A |
 
 #### Livestreams
-* roosterteeth.livestreams.list;
-* roosterteeth.livestreams.withID(#ID).self;
-* roosterteeth.livestreams.withID(#ID).schedule;
+| Method | Query/Body | Call | Description | Auth |
+| --- | --- | --- | --- | --- |
+| GET | Query (opt.) | roosterteeth.livestreams.list({details},callback) |  | N/A |
+| GET | N/A | roosterteeth.livestreams.withID(#ID).self(callback) |  | N/A |
+| GET | Query (opt.) | roosterteeth.livestreams.withID(#ID).schedule(callback) |  | N/A |
 
 #### Seasons
-* roosterteeth.seasons.withID(#ID).self;
-* roosterteeth.seasons.withID(#ID).episodes;
+| Method | Query/Body | Call | Description | Auth |
+| --- | --- | --- | --- | --- |
+| GET | N/A | roosterteeth.seasons.withID(#ID).self(callback) |  | N/A |
+| GET | Query (opt.) | roosterteeth.seasons.withID(#ID).episodes({details},callback) |  | N/A |
 
 #### Shows
-* roosterteeth.shows.list;
-* roosterteeth.shows.withID(#ID).self;
-* roosterteeth.shows.withID(#ID).seasons;
-* roosterteeth.shows.withID(#ID).bonus_features;
-* roosterteeth.shows.withID(#ID).related;
-* roosterteeth.shows.withID(#ID).product_collections;
+| Method | Query/Body | Call | Description | Auth |
+| --- | --- | --- | --- | --- |
+| GET | Query (opt.) | roosterteeth.shows.list({details},callback) |  | N/A |
+| GET | N/A | roosterteeth.shows.withID(#ID).self(callback) |  | N/A |
+| GET | Query (opt.) | roosterteeth.shows.withID(#ID).seasons({details},callback) |  | N/A |
+| GET | Query (opt.) | roosterteeth.shows.withID(#ID).bonus_features({details},callback) |  | N/A |
+| GET | Query (opt.) | roosterteeth.shows.withID(#ID).related({details},callback) |  | N/A |
+| GET | Query (opt.) | roosterteeth.shows.withID(#ID).product_collections({details},callback) |  | N/A |
 
 
 ## Method Examples
