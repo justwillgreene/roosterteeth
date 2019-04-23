@@ -1,6 +1,6 @@
 {
   "name": "roosterteeth",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "A Node.js client for the Rooster Teeth suite of APIs",
   "main": "./lib/roosterteeth",
   "author": {
