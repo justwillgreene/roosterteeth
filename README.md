@@ -12,7 +12,7 @@ Node.js wrapper for the [Rooster Teeth](https://roosterteeth.com) suite of APIs.
     - [Lists](#lists-list)
     - [Notify](#notify-list)
     - [SVOD](#svod-list)
-    - [WTC](#wtc-list)]
+    - [WTC](#wtc-list)
 4. [Method Examples:](#method-examples)
     - [Auth](#auth-examples)
     - [Business Service](#business-service-examples)
@@ -55,20 +55,20 @@ roosterteeth.settings.Authorization = 'Bearer #authorizationToken';
 
 
 ## Method Lists
-### Auth - List
+### Auth List
 #### Oauth
 | Method | Query/Body | Call | Description | Auth |
 | --- | --- | --- | --- | --- |
 | POST | Body (req.) | roosterteeth.oauth.token({details},callback) | Allows a user to generate an auth token | N/A |
 | POST | Body (req.) | roosterteeth.oauth.revoke({details},callback) | Allows a user to revoke an auth token. | N/A |
 
-### Business Service - List
+### Business Service List
 #### Me
 | Method | Query/Body | Call | Description | Auth |
 | --- | --- | --- | --- | --- |
 | GET | Query (opt.) | roosterteeth.me.list({details},callback) | Allows a user to access their own User object. | Req. |
 
-### Community - List
+### Community List
 #### Achievements
 | Method | Query/Body | Call | Description | Auth |
 | --- | --- | --- | --- | --- |
@@ -153,19 +153,19 @@ roosterteeth.settings.Authorization = 'Bearer #authorizationToken';
 | POST | N/A | roosterteeth.users.withID(#ID).follow(callback) |  | Req. |
 | DELETE | N/A | roosterteeth.users.withID(#ID).unfollow(callback) |  | Req. |
 
-### Lists - List
+### Lists List
 #### Watchlist
 | Method | Query/Body | Call | Description | Auth |
 | --- | --- | --- | --- | --- |
 | GET | Query (opt.) | roosterteeth.watchlist.list({details},callback) |  | Req. |
 
-### Notify - List
+### Notify List
 #### Notifications
 | Method | Query/Body | Call | Description | Auth |
 | --- | --- | --- | --- | --- |
 | GET | Query (opt.) | roosterteeth.notifications.list({details},callback) | Retrieves a list of notifications that are active for the user. | Req. |
 
-### SVOD - List
+### SVOD List
 #### Bonus Features
 | Method | Query/Body | Call | Description | Auth |
 | --- | --- | --- | --- | --- |
@@ -233,9 +233,10 @@ roosterteeth.settings.Authorization = 'Bearer #authorizationToken';
 | --- | --- | --- | --- | --- |
 | GET | Query (opt.) | roosterteeth.store_carousel.list({details},callback) |  | N/A |
 
-### WTC - List
+### WTC List
 #### Played Positions
 | Method | Query/Body | Call | Description | Auth |
+| --- | --- | --- | --- | --- |
 | GET | N/A | roosterteeth.played_positions.withID(#ID).self(callback) | Returns time in seconds that authenticated user has viewed episode corresponding to provided UUID. | Req. |
 
 ## Method Examples
@@ -251,7 +252,7 @@ let printResponse = (err,data) => {
 }
 ```
 
-### Auth - Examples
+### Auth Examples
 #### Oauth
 ```js
 // https://auth.roosterteeth.com/oauth/token
@@ -265,14 +266,14 @@ roosterteeth.oauth.token({
 roosterteeth.oauth.revoke({'token': 'Bearer #authorizationToken'}, printResponse);
 ```
 
-### Business Service - Examples
+### Business Service Examples
 #### Me
 ```js
 // https://business-service.roosterteeth.com/api/v1/me
 roosterteeth.me.list(printResponse);
 ```
 
-### Community - Examples
+### Community Examples
 #### Achievements
 ```js
 roosterteeth.settings.Authorization = 'Bearer #authorizationToken';
@@ -515,7 +516,7 @@ roosterteeth.users.withID('ID').follow(printResponse);
 roosterteeth.users.withID('ID').unfollow(printResponse);
 ```
 
-### Lists - Examples
+### Lists Examples
 #### Watchlist
 ```js
 roosterteeth.settings.Authorization = 'Bearer #authorizationToken';
@@ -524,7 +525,7 @@ roosterteeth.settings.Authorization = 'Bearer #authorizationToken';
 roosterteeth.watchlist.list(printResponse);
 ```
 
-### Notify - Examples
+### Notify Examples
 #### Notifications
 ```js
 roosterteeth.settings.Authorization = 'Bearer #authorizationToken';
@@ -534,7 +535,7 @@ roosterteeth.notifications.list(printResponse);
 roosterteeth.notifications.list({'per_page':1},printResponse);
 ```
 
-### SVOD - Examples
+### SVOD Examples
 #### Bonus Features
 ```js
 // https://svod-be.roosterteeth.com/api/v1/bonus_features
@@ -663,7 +664,7 @@ roosterteeth.shows.withID('rwby').product_collections(printResponse);
 roosterteeth.store_carousel.list(printResponse);
 ```
 
-### WTC - Examples
+### WTC Examples
 #### Played Positions
 ```js
 roosterteeth.settings.Authorization = 'Bearer #authorizationToken';
