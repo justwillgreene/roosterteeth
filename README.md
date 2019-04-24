@@ -158,6 +158,8 @@ roosterteeth.settings.Authorization = 'Bearer #authorizationToken';
 | Method | Query/Body | Call | Description | Auth |
 | --- | --- | --- | --- | --- |
 | GET | Query (opt.) | roosterteeth.watchlist.list({details},callback) |  | Req. |
+| PUT | Query (req.) | roosterteeth.watchlist.add({details},callback) |  | Req. |
+| DELETE | Query (req.) | roosterteeth.watchlist.remove({details},callback) |  | Req. |
 
 ### Notify List
 #### Notifications
@@ -211,6 +213,11 @@ roosterteeth.settings.Authorization = 'Bearer #authorizationToken';
 | Method | Query/Body | Call | Description | Auth |
 | --- | --- | --- | --- | --- |
 | GET | Query (opt.) | roosterteeth.marketing_banners.list({details},callback) |  | N/A |
+
+#### Schedule
+| Method | Query/Body | Call | Description | Auth |
+| --- | --- | --- | --- | --- |
+| GET | Query (req.) | roosterteeth.schedule.list({details}callback) |  | N/A |
 
 #### Seasons
 | Method | Query/Body | Call | Description | Auth |
@@ -523,6 +530,12 @@ roosterteeth.settings.Authorization = 'Bearer #authorizationToken';
 
 // https://lists.roosterteeth.com/api/v1/watchlist
 roosterteeth.watchlist.list(printResponse);
+
+// https://lists.roosterteeth.com/api/v1/watchlist/add
+roosterteeth.watchlist.add({'item_uuid':'6fbcf4e7-9845-4165-84ec-c6ca7fbd17a5','item_type':'episode'},printResponse);
+
+// https://lists.roosterteeth.com/api/v1/watchlist/remove
+roosterteeth.watchlist.remove({'item_uuid':'6fbcf4e7-9845-4165-84ec-c6ca7fbd17a5','item_type':'episode'},printResponse);
 ```
 
 ### Notify Examples
@@ -585,6 +598,7 @@ roosterteeth.channels.withID('rooster-teeth').livestreams(printResponse);
 // https://svod-be.roosterteeth.com/api/v1/episodes
 roosterteeth.episodes.list(printResponse);
 roosterteeth.episodes.list({'per_page':1, 'page':5},printResponse);
+roosterteeth.episodes.list({'genre':'games reimagined'},printResponse);
 
 // https://svod-be.roosterteeth.com/api/v1/episodes/EPISODE
 roosterteeth.episodes.withID('gameplay-2019-portal23').self(printResponse);
@@ -622,6 +636,12 @@ roosterteeth.livestreams.withID('rt-tv').schedules(printResponse);
 ```js
 // https://svod-be.roosterteeth.com/api/v1/marketing-banners
 roosterteeth.marketing_banners.list(printResponse);
+```
+
+#### Schedule
+```js
+// https://svod-be.roosterteeth.com/api/v1/schedule
+roosterteeth.schedule.list({'from':'2019-04-20T04:00:00.000Z','to':'2019-04-27T04:00:00.000Z'},printResponse);
 ```
 
 #### Seasons
