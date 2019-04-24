@@ -10,13 +10,17 @@ Node.js wrapper for the [Rooster Teeth](https://roosterteeth.com) suite of APIs.
     - [Business Service](#business-service-list)
     - [Community](#community-list)
     - [Lists](#lists-list)
+    - [Notify](#notify-list)
     - [SVOD](#svod-list)
+    - [WTC](#wtc-list)]
 4. [Method Examples:](#method-examples)
     - [Auth](#auth-examples)
     - [Business Service](#business-service-examples)
     - [Community](#community-examples)
     - [Lists](#lists-examples)
+    - [Notify](#notify-examples)
     - [SVOD](#svod-examples)
+    - [WTC](#wtc-examples)
 
 ## Usage
 ### Not Authenticated
@@ -40,14 +44,14 @@ roosterteeth.settings.Authorization = 'Bearer #authorizationToken';
 * [ ] Add tests.
 * [x] Supported Methods documentation.
 * [ ] Add descriptions to supported Methods list tables.
-* [ ] Add support for the following sources: 
+* [x] Add support for the following sources: 
     * [x] Auth
     * [x] Business Service
     * [x] Community
     * [x] Lists
-    * [ ] Notify
+    * [x] Notify
     * [x] SVOD
-    * [ ] WTC
+    * [x] WTC
 
 
 ## Method Lists
@@ -55,8 +59,8 @@ roosterteeth.settings.Authorization = 'Bearer #authorizationToken';
 #### Oauth
 | Method | Query/Body | Call | Description | Auth |
 | --- | --- | --- | --- | --- |
-| POST | N/A | roosterteeth.oauth.token({details},callback) | Allows a user to generate an auth token | N/A |
-| POST | N/A | roosterteeth.oauth.revoke({details},callback) | Allows a user to revoke an auth token. | N/A |
+| POST | Body (req.) | roosterteeth.oauth.token({details},callback) | Allows a user to generate an auth token | N/A |
+| POST | Body (req.) | roosterteeth.oauth.revoke({details},callback) | Allows a user to revoke an auth token. | N/A |
 
 ### Business Service - List
 #### Me
@@ -155,6 +159,12 @@ roosterteeth.settings.Authorization = 'Bearer #authorizationToken';
 | --- | --- | --- | --- | --- |
 | GET | Query (opt.) | roosterteeth.watchlist.list({details},callback) |  | Req. |
 
+### Notify - List
+#### Notifications
+| Method | Query/Body | Call | Description | Auth |
+| --- | --- | --- | --- | --- |
+| GET | Query (opt.) | roosterteeth.notifications.list({details},callback) | Retrieves a list of notifications that are active for the user. | Req. |
+
 ### SVOD - List
 #### Bonus Features
 | Method | Query/Body | Call | Description | Auth |
@@ -185,12 +195,22 @@ roosterteeth.settings.Authorization = 'Bearer #authorizationToken';
 | GET | Query (opt.) | roosterteeth.episodes.withID(#ID).next({details},callback) |  | N/A |
 | GET | Query (opt.) | roosterteeth.episodes.withID(#ID).videos({details},callback) |  | N/A |
 
+#### Featured Items
+| Method | Query/Body | Call | Description | Auth |
+| --- | --- | --- | --- | --- |
+| GET | Query (opt.) | roosterteeth.featured_items.list({details},callback) |  | N/A |
+
 #### Livestreams
 | Method | Query/Body | Call | Description | Auth |
 | --- | --- | --- | --- | --- |
 | GET | Query (opt.) | roosterteeth.livestreams.list({details},callback) |  | N/A |
 | GET | N/A | roosterteeth.livestreams.withID(#ID).self(callback) |  | N/A |
 | GET | Query (opt.) | roosterteeth.livestreams.withID(#ID).schedule(callback) |  | N/A |
+
+#### Marketing Banners
+| Method | Query/Body | Call | Description | Auth |
+| --- | --- | --- | --- | --- |
+| GET | Query (opt.) | roosterteeth.marketing_banners.list({details},callback) |  | N/A |
 
 #### Seasons
 | Method | Query/Body | Call | Description | Auth |
@@ -208,6 +228,15 @@ roosterteeth.settings.Authorization = 'Bearer #authorizationToken';
 | GET | Query (opt.) | roosterteeth.shows.withID(#ID).related({details},callback) |  | N/A |
 | GET | Query (opt.) | roosterteeth.shows.withID(#ID).product_collections({details},callback) |  | N/A |
 
+#### Store Carousel
+| Method | Query/Body | Call | Description | Auth |
+| --- | --- | --- | --- | --- |
+| GET | Query (opt.) | roosterteeth.store_carousel.list({details},callback) |  | N/A |
+
+### WTC - List
+#### Played Positions
+| Method | Query/Body | Call | Description | Auth |
+| GET | N/A | roosterteeth.played_positions.withID(#ID).self(callback) | Returns time in seconds that authenticated user has viewed episode corresponding to provided UUID. | Req. |
 
 ## Method Examples
 
@@ -495,6 +524,16 @@ roosterteeth.settings.Authorization = 'Bearer #authorizationToken';
 roosterteeth.watchlist.list(printResponse);
 ```
 
+### Notify - Examples
+#### Notifications
+```js
+roosterteeth.settings.Authorization = 'Bearer #authorizationToken';
+
+// https://notify.roosterteeth.com/api/v2/my/notifications
+roosterteeth.notifications.list(printResponse);
+roosterteeth.notifications.list({'per_page':1},printResponse);
+```
+
 ### SVOD - Examples
 #### Bonus Features
 ```js
@@ -560,6 +599,12 @@ roosterteeth.episodes.withID('gameplay-2019-portal23').next(printResponse);
 roosterteeth.episodes.withID('gameplay-2019-portal23').videos(printResponse);
 ```
 
+#### Featured Items
+```js
+// https://svod-be.roosterteeth.com/api/v1/featured_items
+roosterteeth.featured_items.list(printResponse);
+```
+
 #### Livestreams
 ```js
 // https://svod-be.roosterteeth.com/api/v1/livestreams
@@ -570,6 +615,12 @@ roosterteeth.livestreams.withID('rt-tv').self(printResponse);
 
 // https://svod-be.roosterteeth.com/api/v1/livestreams/LIVESTREAM/schedule
 roosterteeth.livestreams.withID('rt-tv').schedules(printResponse);
+```
+
+#### Marketing Banners
+```js
+// https://svod-be.roosterteeth.com/api/v1/marketing-banners
+roosterteeth.marketing_banners.list(printResponse);
 ```
 
 #### Seasons
@@ -604,4 +655,19 @@ roosterteeth.shows.withID('rwby').related({'per_page':1, 'page':5},printResponse
 
 // https://svod-be.roosterteeth.com/api/v1/shows/SHOW/products
 roosterteeth.shows.withID('rwby').product_collections(printResponse);
+```
+
+#### Store Carousel
+```js
+// https://svod-be.roosterteeth.com/api/v1/store-carousel
+roosterteeth.store_carousel.list(printResponse);
+```
+
+### WTC - Examples
+#### Played Positions
+```js
+roosterteeth.settings.Authorization = 'Bearer #authorizationToken';
+
+// https://wtc.roosterteeth.com/api/v1/my/played_positions/EPISODEUUID
+roosterteeth.played_positions.withID('9bb7a8c2-8b32-445f-b586-6d934c887bc4').self(printResponse);
 ```
